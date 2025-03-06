@@ -7476,17 +7476,6 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e048ffa2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Fluxo-de-turistas-internacionais-nas-regi%C3%B5es-Nordeste-e-Sul-durante-os-meses-de-inverno-e-ver%C3%A3o-no-per%C3%ADodo-de-2013-at%C3%A9-2023">Fluxo de turistas internacionais nas regiões Nordeste e Sul durante os meses de inverno e verão no período de 2013 até 2023<a class="anchor-link" href="#Fluxo-de-turistas-internacionais-nas-regi%C3%B5es-Nordeste-e-Sul-durante-os-meses-de-inverno-e-ver%C3%A3o-no-per%C3%ADodo-de-2013-at%C3%A9-2023">¶</a></h1>
-</div>
-</div>
-</div>
-</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2e724c0f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7513,7 +7502,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [147]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [95]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -7522,6 +7511,19 @@ a.anchor-link {
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">shapiro</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">resample</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.seasonal</span> <span class="kn">import</span> <span class="n">seasonal_decompose</span>
+<span class="kn">from</span> <span class="nn">statsmodels.graphics.tsaplots</span> <span class="kn">import</span> <span class="n">plot_acf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">adfuller</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.sarimax</span> <span class="kn">import</span> <span class="n">SARIMAX</span>
+<span class="kn">from</span> <span class="nn">pmdarima</span> <span class="kn">import</span> <span class="n">auto_arima</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.optimizers</span> <span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
 </pre></div>
 </div>
 </div>
@@ -7554,7 +7556,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [148]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Foi preferido fazer uma função para junção dos bancos, pois caso seja necessário adicionar mais bancos de outros anos isso</span>
@@ -7589,7 +7591,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [149]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">anos</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2019</span><span class="p">,</span> <span class="mi">2018</span><span class="p">,</span> <span class="mi">2017</span><span class="p">,</span> <span class="mi">2016</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">2013</span><span class="p">]</span>
@@ -7607,7 +7609,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[149]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -7771,7 +7773,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [150]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
@@ -7785,7 +7787,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[150]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(472632, 7)</pre>
 </div>
@@ -7797,7 +7799,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [151]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -7848,7 +7850,7 @@ memory usage: 25.2+ MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [152]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -7862,7 +7864,7 @@ memory usage: 25.2+ MB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[152]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Continente      0
 Pais            0
@@ -7881,7 +7883,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [153]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Chegadas'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
@@ -7895,7 +7897,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [154]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
@@ -7909,7 +7911,7 @@ dtype: int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[154]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>False</pre>
 </div>
@@ -7921,7 +7923,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [155]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Via'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -7935,7 +7937,7 @@ dtype: int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[155]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array(['Aéreo', 'Terrestre', 'Marítimo', 'Fluvial'], dtype=object)</pre>
 </div>
@@ -7947,7 +7949,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [156]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Continente'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -7961,7 +7963,7 @@ dtype: int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[156]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array(['América do Sul', 'Ásia', 'Europa', 'Oceania', 'África',
        'América do Norte', 'América Central e Caribe',
@@ -7975,7 +7977,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [157]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'UF'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -7989,7 +7991,7 @@ dtype: int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[157]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array(['Acre', 'Outras Unidades da Federação', 'Amapá', 'Amazonas',
        'Bahia', 'Ceará', 'Distrito Federal', 'Mato Grosso do Sul',
@@ -8016,7 +8018,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [158]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Mes'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -8030,7 +8032,7 @@ dtype: int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[158]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array(['Novembro', 'Junho', 'Janeiro', 'Fevereiro', 'Marco', 'Abril',
        'Maio', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Dezembro'],
@@ -8044,7 +8046,7 @@ dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [159]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#É preciso mudar o tipo das váriaveis </span>
@@ -8059,7 +8061,7 @@ dtype: int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[159]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Continente     object
 Pais           object
@@ -8089,7 +8091,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [160]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'Continente'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Continente'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'category'</span><span class="p">)</span>
@@ -8108,7 +8110,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [161]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
@@ -8122,7 +8124,7 @@ dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[161]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Continente          category
 Pais                category
@@ -8163,7 +8165,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [162]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">estados_nordeste</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Bahia"</span><span class="p">,</span> <span class="s2">"Ceará"</span><span class="p">,</span> <span class="s2">"Pernambuco"</span><span class="p">,</span> <span class="s2">"Rio Grande do Norte"</span><span class="p">]</span>
@@ -8178,7 +8180,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [163]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'UF'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">estados_nordeste</span><span class="p">)]</span>
@@ -8194,7 +8196,7 @@ dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[163]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8347,7 +8349,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [164]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'UF'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">estados_sul</span><span class="p">)]</span>
@@ -8363,7 +8365,7 @@ dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[164]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8549,7 +8551,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [165]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste</span><span class="p">[</span><span class="s1">'UF'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -8563,7 +8565,7 @@ dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[165]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>UF
 Bahia                  22397
@@ -8580,7 +8582,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [166]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fluxo_tur</span> <span class="o">=</span> <span class="n">df_nordeste</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"UF"</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -8596,7 +8598,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[166]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por UF')</pre>
 </div>
@@ -8625,7 +8627,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [167]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">14.141</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">,</span> <span class="mf">9.5</span><span class="p">,</span> <span class="mf">3.446</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Bahia'</span><span class="p">,</span> <span class="s1">'Ceará'</span><span class="p">,</span> <span class="s1">'Pernambuco'</span><span class="p">,</span> <span class="s2">"Rio Grande do Norte"</span><span class="p">])</span>
@@ -8642,36 +8644,36 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[167]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <style type="text/css">
-#T_09ece_row0_col0, #T_09ece_row1_col1 {
+#T_65711_row0_col0, #T_65711_row1_col1 {
   background-color: #023858;
   color: #f1f1f1;
 }
-#T_09ece_row0_col1, #T_09ece_row1_col0 {
+#T_65711_row0_col1, #T_65711_row1_col0 {
   background-color: #fff7fb;
   color: #000000;
 }
 </style>
-<table id="T_09ece">
+<table id="T_65711">
 <thead>
 <tr>
 <th class="blank level0"> </th>
-<th class="col_heading level0 col0" id="T_09ece_level0_col0">População</th>
-<th class="col_heading level0 col1" id="T_09ece_level0_col1">Turistas</th>
+<th class="col_heading level0 col0" id="T_65711_level0_col0">População</th>
+<th class="col_heading level0 col1" id="T_65711_level0_col1">Turistas</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th class="row_heading level0 row0" id="T_09ece_level0_row0">População</th>
-<td class="data row0 col0" id="T_09ece_row0_col0">1.000000</td>
-<td class="data row0 col1" id="T_09ece_row0_col1">0.994419</td>
+<th class="row_heading level0 row0" id="T_65711_level0_row0">População</th>
+<td class="data row0 col0" id="T_65711_row0_col0">1.000000</td>
+<td class="data row0 col1" id="T_65711_row0_col1">0.994419</td>
 </tr>
 <tr>
-<th class="row_heading level0 row1" id="T_09ece_level0_row1">Turistas</th>
-<td class="data row1 col0" id="T_09ece_row1_col0">0.994419</td>
-<td class="data row1 col1" id="T_09ece_row1_col1">1.000000</td>
+<th class="row_heading level0 row1" id="T_65711_level0_row1">Turistas</th>
+<td class="data row1 col0" id="T_65711_row1_col0">0.994419</td>
+<td class="data row1 col1" id="T_65711_row1_col1">1.000000</td>
 </tr>
 </tbody>
 </table>
@@ -8695,7 +8697,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [168]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Via"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -8710,7 +8712,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[168]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Via')</pre>
 </div>
@@ -8739,7 +8741,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [169]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Ano"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -8754,7 +8756,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[169]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Ano')</pre>
 </div>
@@ -8783,7 +8785,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [170]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Pais"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -8798,7 +8800,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[170]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por País')</pre>
 </div>
@@ -8816,7 +8818,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [171]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Continente"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -8831,7 +8833,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[171]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Continente')</pre>
 </div>
@@ -8860,7 +8862,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [172]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_nordeste_2023</span> <span class="o">=</span> <span class="n">df_nordeste</span><span class="p">[</span><span class="n">df_nordeste</span><span class="p">[</span><span class="s1">'Ano'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2023</span><span class="p">]</span>
@@ -8885,7 +8887,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[172]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Mês em 2023')</pre>
 </div>
@@ -8914,7 +8916,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [173]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">meses_verao</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Dezembro"</span><span class="p">,</span> <span class="s2">"Janeiro"</span><span class="p">,</span> <span class="s2">"Fevereiro"</span><span class="p">]</span>
@@ -8931,7 +8933,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[173]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por continente em 2023 nos meses de verão')</pre>
 </div>
@@ -8949,7 +8951,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [174]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">meses_inverno</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Junho"</span><span class="p">,</span> <span class="s2">"Julho"</span><span class="p">,</span> <span class="s2">"Agosto"</span><span class="p">]</span>
@@ -8966,7 +8968,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[174]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por continente em 2023 nos meses de inverno')</pre>
 </div>
@@ -8984,7 +8986,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [175]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">porct_mensal</span> <span class="o">=</span> <span class="n">quant_mes</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
@@ -9000,7 +9002,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[175]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Crescimento de turistas na região Nordeste em 2023')</pre>
 </div>
@@ -9018,7 +9020,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [176]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">porct_mensal</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"bar"</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9033,7 +9035,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[176]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Crescimento de turistas na região Nordeste em 2023')</pre>
 </div>
@@ -9064,7 +9066,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>O objetivo agora é criar uma matriz em que cada vetor representa um mês. Desta forma, será possível especificar os crescimentos nos meses de verão e inverno</p>
+<p>O objetivo agora é criar uma matriz em que cada vetor representa um mês. Desta forma, será possível especificar os crescimentos nos meses de verão e inverno e fazer a análise da série temporal.</p>
 </div>
 </div>
 </div>
@@ -9073,10 +9075,12 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [177]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">sum_meses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sum_meses_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">120</span><span class="p">,))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">dezembro</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">for</span> <span class="n">ano</span> <span class="ow">in</span> <span class="n">anos</span><span class="p">:</span>
@@ -9092,15 +9096,20 @@ Name: count, dtype: Int64</pre>
             <span class="c1">#Se for o primeiro registro, ou seja, Janeiro de 2013 </span>
             <span class="k">if</span> <span class="p">(</span><span class="n">dezembro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">continue</span>
             <span class="n">crs_jan</span> <span class="o">=</span> <span class="p">((</span><span class="n">quant_mes</span><span class="p">[</span><span class="s2">"Janeiro"</span><span class="p">]</span> <span class="o">-</span> <span class="n">dezembro</span><span class="p">)</span> <span class="o">/</span> <span class="n">dezembro</span><span class="p">)</span>
             <span class="n">sum_meses</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_jan</span>
+            <span class="n">sum_meses_seq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">crs_jan</span>
             <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">continue</span>
         <span class="n">sum_meses</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mes</span>
+        <span class="n">sum_meses_seq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">mes</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">11</span><span class="p">):</span>
             <span class="n">dezembro</span> <span class="o">=</span> <span class="n">quant_mes</span><span class="p">[</span><span class="s2">"Dezembro"</span><span class="p">]</span>
         <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="n">sum_meses</span>
 </pre></div>
@@ -9113,7 +9122,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[177]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array([[ 0.00000000e+00, -8.95776154e-01,  3.32221731e+00,
          9.44902186e+00, -1.42906688e-01, -3.93641505e-01,
@@ -9167,6 +9176,61 @@ Name: count, dtype: Int64</pre>
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18687123">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sum_meses_seq</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>array([ 0.00000000e+00,  7.93348566e-02, -5.92731977e-02,  5.12939117e-01,
+       -5.59742191e-01,  4.41441441e-01,  8.09505208e-01,  1.18730661e-01,
+       -1.54049013e-01,  2.02630779e-01,  3.32869697e-01,  3.30756095e-01,
+       -8.95776154e-01, -9.72640219e-01, -8.50000000e-01,  2.87500000e+01,
+        7.95518207e-01,  1.06084243e-01,  2.48377997e+00, -2.28744939e-01,
+       -6.82414698e-03,  2.68974630e+00,  3.40925369e-02,  2.54467378e-01,
+        3.32221731e+00, -5.36763579e-02, -6.29653627e-01, -9.99271031e-01,
+       -5.00000000e-01,  5.00000000e+00,  4.76666667e+00,  2.46820809e+00,
+        1.75000000e-01,  2.53333333e+00,  1.67001204e-01,  4.94668043e-01,
+        9.44902186e+00, -3.99991190e-02, -3.46357692e-01, -2.99062796e-02,
+       -4.48710063e-01,  4.53793647e-01,  4.69571106e-01,  1.40456514e-01,
+       -1.91040595e-01, -6.23688855e-02,  5.15981249e-01,  2.15850259e-01,
+       -1.42906688e-01, -1.15906843e-01, -1.33467250e-01, -3.49364711e-01,
+       -3.70721147e-01,  1.54590411e-01,  9.51520795e-01,  5.67766150e-02,
+        6.67288707e-02,  6.96932931e-03,  2.30889935e-01,  2.75974322e-01,
+       -3.93641505e-01, -1.28019537e-01, -1.67498988e-01, -3.89915694e-02,
+       -3.30198229e-01,  1.15861722e-02,  8.52972300e-01, -1.25167966e-01,
+        8.99316489e-02,  1.90952649e-02,  4.21869598e-01,  6.88078971e-02,
+       -7.93011670e-02, -3.19916982e-01, -1.08955495e-01, -3.64184947e-01,
+       -2.78504553e-01,  1.43631677e-01,  7.40809824e-01,  5.00022322e-02,
+        2.50010630e-02,  1.98987846e-01,  7.08206477e-02,  2.76113857e-01,
+       -1.64544143e-01, -5.50336384e-02, -7.05535245e-03, -5.42019249e-01,
+       -1.49365303e-01,  3.79124523e-01,  5.87015329e-01, -8.23863636e-02,
+       -3.43653251e-01,  9.48113208e-01,  2.23470541e-01,  3.65992031e-01,
+       -3.33629532e-01, -7.61247681e-02, -3.92155632e-01, -1.82737972e-02,
+       -3.94205490e-01,  4.37297110e+00, -6.37346128e-01, -9.85790013e-02,
+       -1.69450484e-01,  3.37240436e-01,  4.14060067e-01,  7.25779554e-01,
+       -2.02800518e-01, -1.54994968e-01, -2.23238693e-01, -3.98341406e-01,
+       -2.52794348e-01,  3.09409394e-01,  2.88031254e-01,  1.85569853e-01,
+       -4.19644934e-01,  7.06051296e-01,  3.46357123e-01,  3.12096540e-01])</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e0f71752">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -9183,7 +9247,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [178]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#O número 1 é o fator multiplicativo que serve para evitar que os valores sejam negativos, pois a média geométrica só aceita</span>
@@ -9205,7 +9269,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[178]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[33]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>-5.746825833039104</pre>
 </div>
@@ -9228,7 +9292,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [179]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">junho</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">sum_meses</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
@@ -9248,7 +9312,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[179]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[34]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>48.64249024877279</pre>
 </div>
@@ -9293,7 +9357,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [180]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#O np.log transforma em logaritimos naturais</span>
@@ -9312,7 +9376,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[180]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>-5.746825833039104</pre>
 </div>
@@ -9335,7 +9399,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [181]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Guardando os dados transformados em log para o teste de hipótese</span>
@@ -9361,7 +9425,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [182]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul</span><span class="p">[</span><span class="s1">'UF'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -9375,7 +9439,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[182]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[53]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>UF
 Rio Grande do Sul    44550
@@ -9391,7 +9455,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [183]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fluxo_tur</span> <span class="o">=</span> <span class="n">df_sul</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"UF"</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -9407,7 +9471,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[183]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[54]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por UF')</pre>
 </div>
@@ -9425,7 +9489,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [184]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Via"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9440,7 +9504,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[184]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[55]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Via')</pre>
 </div>
@@ -9469,7 +9533,7 @@ Name: count, dtype: Int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [185]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Ano"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9484,7 +9548,7 @@ Name: count, dtype: Int64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[185]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[56]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Ano')</pre>
 </div>
@@ -9516,7 +9580,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [186]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [57]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Pais"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9531,7 +9595,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[186]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[57]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por País')</pre>
 </div>
@@ -9549,7 +9613,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [187]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [58]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Continente"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">'Chegadas'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9564,7 +9628,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[187]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[58]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Continente')</pre>
 </div>
@@ -9582,7 +9646,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [188]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [59]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul_2023</span> <span class="o">=</span> <span class="n">df_sul</span><span class="p">[</span><span class="n">df_sul</span><span class="p">[</span><span class="s1">'Ano'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2023</span><span class="p">]</span>
@@ -9607,7 +9671,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[188]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[59]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Mês em 2023')</pre>
 </div>
@@ -9636,7 +9700,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [189]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul_2023_inv</span> <span class="o">=</span> <span class="n">df_sul_2023</span><span class="p">[</span><span class="n">df_sul_2023</span><span class="p">[</span><span class="s1">'Mes'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">meses_inverno</span><span class="p">)]</span>
@@ -9652,7 +9716,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[189]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[60]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por continente em 2023 nos meses de inverno')</pre>
 </div>
@@ -9670,7 +9734,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [190]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul_2023_ver</span> <span class="o">=</span> <span class="n">df_sul_2023</span><span class="p">[</span><span class="n">df_sul_2023</span><span class="p">[</span><span class="s1">'Mes'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">meses_verao</span><span class="p">)]</span>
@@ -9686,7 +9750,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[190]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[61]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por continente em 2023 nos meses de verão')</pre>
 </div>
@@ -9704,7 +9768,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [191]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul_2019</span> <span class="o">=</span> <span class="n">df_sul</span><span class="p">[</span><span class="n">df_sul</span><span class="p">[</span><span class="s1">'Ano'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2019</span><span class="p">]</span>
@@ -9729,7 +9793,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[191]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[62]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por Mês em 2019')</pre>
 </div>
@@ -9747,7 +9811,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [192]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [63]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul_2019_inv</span> <span class="o">=</span> <span class="n">df_sul_2019</span><span class="p">[</span><span class="n">df_sul_2019</span><span class="p">[</span><span class="s1">'Mes'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">meses_inverno</span><span class="p">)]</span>
@@ -9763,7 +9827,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[192]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[63]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por continente em 2019 nos meses de inverno')</pre>
 </div>
@@ -9781,7 +9845,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [193]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [64]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">df_sul_2019_ver</span> <span class="o">=</span> <span class="n">df_sul_2019</span><span class="p">[</span><span class="n">df_sul_2019</span><span class="p">[</span><span class="s1">'Mes'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">meses_verao</span><span class="p">)]</span>
@@ -9797,7 +9861,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[193]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[64]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Frequência de pessoas por continente em 2019 nos meses de verão')</pre>
 </div>
@@ -9826,7 +9890,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [194]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [65]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">porct_mensal</span> <span class="o">=</span> <span class="n">quant_mes</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
@@ -9842,7 +9906,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[194]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[65]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Crescimento de turistas na região Sul em 2023')</pre>
 </div>
@@ -9860,7 +9924,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [195]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [66]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">porct_mensal</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"bar"</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9875,7 +9939,7 @@ atrela a percepção desses turistas acerca dos estados do Sul com viagens domé
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[195]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[66]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Crescimento de turistas na região Sul em 2023')</pre>
 </div>
@@ -9916,11 +9980,13 @@ de verão sem considerar Janeiro.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [196]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [67]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">sum_meses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sum_meses_seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">120</span><span class="p">,))</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">dezembro</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="k">for</span> <span class="n">ano</span> <span class="ow">in</span> <span class="n">anos</span><span class="p">:</span>
     <span class="n">df_sul_ano</span> <span class="o">=</span> <span class="n">df_sul</span><span class="p">[</span><span class="n">df_sul</span><span class="p">[</span><span class="s1">'Ano'</span><span class="p">]</span> <span class="o">==</span> <span class="n">ano</span><span class="p">]</span>
@@ -9956,7 +10022,7 @@ de verão sem considerar Janeiro.</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[196]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[67]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array([[ 0.00000000e+00, -8.77136513e-01,  9.34441805e+00,
          3.39351378e+01,  2.28437065e+00,  2.95388781e+00,
@@ -10015,7 +10081,7 @@ de verão sem considerar Janeiro.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [197]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [68]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">dezembro_sul</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">sum_meses</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
@@ -10035,7 +10101,7 @@ de verão sem considerar Janeiro.</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[197]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[68]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>45.25777713999377</pre>
 </div>
@@ -10058,7 +10124,7 @@ de verão sem considerar Janeiro.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [198]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [69]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">junho_sul</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">sum_meses</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
@@ -10078,7 +10144,7 @@ de verão sem considerar Janeiro.</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[198]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[69]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>2.9772676011587285</pre>
 </div>
@@ -10101,7 +10167,7 @@ de verão sem considerar Janeiro.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [199]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [70]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">log_sul_inverno</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">junho_sul</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">julho_sul</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">agosto_sul</span><span class="p">)))</span>
@@ -10213,7 +10279,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [221]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [71]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">media_nord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_nord_verao</span><span class="p">)</span>
@@ -10228,7 +10294,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[221]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[71]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>-0.05918568206302657</pre>
 </div>
@@ -10240,7 +10306,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [201]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [72]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">desvio_nord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">log_nord_verao</span><span class="p">)</span>
@@ -10255,7 +10321,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[201]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[72]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.9538062596588723</pre>
 </div>
@@ -10267,7 +10333,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [222]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [73]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">media_sul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_sul_verao</span><span class="p">)</span>
@@ -10282,7 +10348,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[222]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[73]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.3733397514430343</pre>
 </div>
@@ -10294,7 +10360,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [203]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [74]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">desvio_sul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">log_sul_verao</span><span class="p">)</span>
@@ -10309,7 +10375,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[203]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[74]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>1.0209864509542639</pre>
 </div>
@@ -10343,7 +10409,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [204]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [75]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Considerando que o nível de significância é de 5%</span>
@@ -10360,7 +10426,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[204]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[75]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>5.025411610404262e-06</pre>
 </div>
@@ -10372,7 +10438,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [205]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [76]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">estatistica</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">log_sul_verao</span><span class="p">)</span>
@@ -10387,7 +10453,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[205]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[76]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.07041042298078537</pre>
 </div>
@@ -10399,7 +10465,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [206]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [77]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">log_nord_verao</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
@@ -10413,7 +10479,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[206]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[77]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(array([1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0.,
         0., 0., 0., 0., 0., 0., 0., 0., 0., 2., 1., 4., 7., 3., 1., 6., 1.,
@@ -10445,7 +10511,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [207]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [78]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">log_sul_verao</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
@@ -10459,7 +10525,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[207]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[78]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(array([1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 2., 3., 1., 2.,
         1., 2., 0., 0., 1., 2., 1., 3., 2., 1., 3., 0., 1., 1., 0., 0., 0.,
@@ -10535,7 +10601,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [223]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [79]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">diferenca_observada</span> <span class="o">=</span> <span class="n">media_nord</span> <span class="o">-</span> <span class="n">media_sul</span>
@@ -10584,7 +10650,7 @@ Em que $\mu_N$ é a média populacional da região Nordeste e $\mu_S$ é a da re
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Diferença observada: -0.4325254335060609
-P-valor (unilateral): 0.949
+P-valor (unilateral): 0.955
 Não rejeite H0.
 </pre>
 </div>
@@ -10643,7 +10709,7 @@ $$
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [235]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [80]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">n_repeticoes</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -10672,7 +10738,7 @@ $$
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Diferença observada: 0.4325254335060609
-P-valor (unilateral): 0.048
+P-valor (unilateral): 0.045
 Rejeite H0.
 </pre>
 </div>
@@ -10743,7 +10809,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [210]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [81]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">media_nord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_nord_inverno</span><span class="p">)</span>
@@ -10758,7 +10824,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[210]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[81]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.3963738424945034</pre>
 </div>
@@ -10770,7 +10836,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [211]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [82]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">desvio_nord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">log_nord_inverno</span><span class="p">)</span>
@@ -10785,7 +10851,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[211]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[82]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.6084319056319093</pre>
 </div>
@@ -10797,7 +10863,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [212]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [83]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">media_sul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">log_sul_inverno</span><span class="p">)</span>
@@ -10812,7 +10878,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[212]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[83]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.029338074981703353</pre>
 </div>
@@ -10824,7 +10890,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [213]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [84]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">desvio_sul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">log_sul_inverno</span><span class="p">)</span>
@@ -10839,7 +10905,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[213]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[84]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.5971204741923558</pre>
 </div>
@@ -10862,7 +10928,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [214]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [85]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">estatistica</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">log_nord_inverno</span><span class="p">)</span>
@@ -10877,7 +10943,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[214]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[85]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.0054204510524868965</pre>
 </div>
@@ -10889,7 +10955,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [215]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [86]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">estatistica</span><span class="p">,</span> <span class="n">p_valor</span> <span class="o">=</span> <span class="n">shapiro</span><span class="p">(</span><span class="n">log_sul_inverno</span><span class="p">)</span>
@@ -10904,7 +10970,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[215]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[86]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>0.49575453996658325</pre>
 </div>
@@ -10916,7 +10982,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [216]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [87]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">log_nord_inverno</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
@@ -10930,7 +10996,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[216]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[87]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(array([1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 1., 2.,
         0., 2., 2., 4., 1., 2., 1., 3., 0., 1., 1., 1., 2., 0., 0., 0., 0.,
@@ -10962,7 +11028,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [217]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [88]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">log_sul_inverno</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
@@ -10976,7 +11042,7 @@ $$</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[217]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[88]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(array([1., 0., 0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 1., 2., 1., 3.,
         1., 0., 2., 3., 0., 1., 1., 1., 0., 1., 0., 0., 1., 1., 1., 0., 0.,
@@ -11052,7 +11118,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [218]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [89]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">n_repeticoes</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -11081,7 +11147,7 @@ $$</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Diferença observada: -0.36703576751280004
-P-valor (unilateral): 0.988
+P-valor (unilateral): 0.984
 Não rejeite H0.
 </pre>
 </div>
@@ -11141,7 +11207,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [219]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [90]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">n_repeticoes</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -11170,7 +11236,7 @@ $$</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Diferença observada: 0.36703576751280004
-P-valor (unilateral): 0.017
+P-valor (unilateral): 0.016
 Rejeite H0.
 </pre>
 </div>
@@ -11235,6 +11301,11 @@ Rejeite H0.
 <p>Tsun, A. "Probability &amp; statistics with applications to computing." (2020).</p>
 <p><a href="https://www.datacamp.com/pt/tutorial/geometric-mean">https://www.datacamp.com/pt/tutorial/geometric-mean</a></p>
 <p>Horowitz, Joel L. "The bootstrap." Handbook of econometrics. Vol. 5. Elsevier, 2001. 3159-3228.</p>
+<p><a href="http://sillasgonzaga.com/material/curso_series_temporais/arima#estacionariedade-diferenciacao-e-autocorrelacao">http://sillasgonzaga.com/material/curso_series_temporais/arima#estacionariedade-diferenciacao-e-autocorrelacao</a></p>
+<p><a href="https://www.machinelearningplus.com/machine-learning/how-to-detect-outliers-with-z-score/">https://www.machinelearningplus.com/machine-learning/how-to-detect-outliers-with-z-score/</a></p>
+<p><a href="https://ivanildo-batista13.medium.com/autoarima-em-python-26303d650de3">https://ivanildo-batista13.medium.com/autoarima-em-python-26303d650de3</a></p>
+<p><a href="https://sigmoidal.ai/metricas-de-avaliacao-em-modelos-de-regressao-em-machine-learning/">https://sigmoidal.ai/metricas-de-avaliacao-em-modelos-de-regressao-em-machine-learning/</a></p>
+<p><a href="https://www.datageeks.com.br/lstm/">https://www.datageeks.com.br/lstm/</a></p>
 </div>
 </div>
 </div>
